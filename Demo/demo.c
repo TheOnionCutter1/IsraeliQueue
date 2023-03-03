@@ -1,7 +1,9 @@
 #include <israeli_queue.h>
+#include <stdio.h>
 
 int main()
 {
-    hello();
+    IsraeliQueue* q = NULL;
+
     return 0;
 }

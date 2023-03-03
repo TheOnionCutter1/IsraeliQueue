@@ -1,4 +1,11 @@
-int hello()
+#include "israeli_queue.h"
+#include <stdlib.h>
+
+struct IsraeliQueue
 {
-    return 0;
+};
+
+IsraeliQueue* israeliQueue_create()
+{
+    return NULL;
 }
