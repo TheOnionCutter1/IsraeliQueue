@@ -9,7 +9,7 @@ template <class T> class IsraeliQueue
 private:
     Queue<unsigned int> _groupQueue;
     std::unordered_map<unsigned int, Queue<T>> _groupedValues;
-    unsigned int _idCounter = 1;
+    unsigned int _idCounter = 0;
 
     /**
      * Returns an unused group id.
