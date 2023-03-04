@@ -33,7 +33,51 @@ private:
     }
 
 public:
-    void enqueue(T value, int group = -1);
-    T dequeue();
+    /**
+     * Add a value to the queue.
+     *
+     * @param value The value to add.
+     * @param group The group of the value or -1 to create a new group.
+     */
+    void enqueue(T value, int group = -1)
+    {
+        if (group == -1)
+        {
+            group = _findNewID();
+            _groupQueue.enqueue(group);
+            _groupedValues[group] = Queue<T>();
+        }
+        _groupedValues[group].enqueue(value);
+    }
+
+    /**
+     * Remove a value from the queue.
+     * Calling this on an empty queue is undefined behavior.
+     *
+     * @return The value that was removed.
+     */
+    T dequeue()
+    {
+        Queue<T>& firstGroup = _groupedValues[_groupQueue.front()];
+        T value              = firstGroup.dequeue();
+
+        if (firstGroup.empty())
+        {
+            // If the group is empty, remove it from our queue entirely.
+            _groupQueue.dequeue();
+        }
+
+        return value;
+    }
+
+    T& front()
+    {
+        return _groupedValues[_groupQueue.front()].front();
+    }
+
+    bool empty()
+    {
+        return _groupQueue.empty();
+    }
 };
 } // namespace israeli_queue
