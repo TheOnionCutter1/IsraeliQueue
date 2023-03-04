@@ -40,6 +40,16 @@ public:
         }
     }
 
+    T& front()
+    {
+        return _head->value;
+    }
+
+    bool empty()
+    {
+        return !_head;
+    }
+
     T dequeue()
     {
         T value       = _head->value;
