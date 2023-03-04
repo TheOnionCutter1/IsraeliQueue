@@ -1,7 +1,5 @@
 #pragma once
 
-#include <cstddef>
-
 namespace israeli_queue
 {
 template <class T> class Node
@@ -11,7 +9,7 @@ public:
     Node<T>* next;
     Node<T>* prev;
 
-    Node(T value) : value(value), next(NULL), prev(NULL)
+    Node(const T& value) : value(value), next(nullptr), prev(nullptr)
     {
     }
 };
@@ -19,26 +17,26 @@ public:
 template <class T> class Queue
 {
 private:
-    Node<T>* head;
-    Node<T>* tail;
+    Node<T>* _head;
+    Node<T>* _tail;
 
 public:
-    Queue() : head(NULL), tail(NULL)
+    Queue() : _head(nullptr), _tail(nullptr)
     {
     }
 
-    void enqueue(T value)
+    void enqueue(const T& value)
     {
-        if (!head)
+        if (!_head)
         {
-            head = new Node<T>(value);
-            tail = new Node<T>(value);
+            _head = new Node<T>(value);
+            _tail = new Node<T>(value);
         }
         else
         {
-            tail->next       = new Node<T>(value);
-            tail->next->prev = tail;
-            tail             = tail->next;
+            _tail->next       = new Node<T>(value);
+            _tail->next->prev = _tail;
+            _tail             = _tail->next;
         }
     }
 
