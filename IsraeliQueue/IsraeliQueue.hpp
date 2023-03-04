@@ -65,7 +65,7 @@ public:
         if (firstGroup.empty())
         {
             // If the group is empty, remove it from our queue entirely.
-            _groupQueue.dequeue();
+            _groupedValues.erase(_groupQueue.dequeue());
         }
 
         return value;
