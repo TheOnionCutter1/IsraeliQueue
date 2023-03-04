@@ -57,5 +57,20 @@ public:
 
         return value;
     }
+
+    ~Queue()
+    {
+        Node<T>* curr = _head;
+        Node<T>* next = nullptr;
+
+        _head = nullptr;
+        _tail = nullptr;
+        while (curr)
+        {
+            next = curr->next;
+            delete curr;
+            curr = next;
+        }
+    }
 };
 }; // namespace israeli_queue
