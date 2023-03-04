@@ -16,18 +16,19 @@ private:
      */
     unsigned int _findNewID()
     {
-        unsigned int id = _idCounter++;
+        unsigned int id = 0;
 
+        _idCounter++;
         // Check if there was an overflow in `_idCounter`.
-        if (id == 0)
+        if (_idCounter == 0)
         {
-            _idCounter = 1;
-            while (_groupedValues.find(_idCounter) != _groupedValues.end())
-            {
-                _idCounter++;
-            }
-            id = _idCounter;
+            _idCounter++;
         }
+        while (_groupedValues.find(_idCounter) != _groupedValues.end())
+        {
+            _idCounter++;
+        }
+        id = _idCounter;
 
         return id;
     }
