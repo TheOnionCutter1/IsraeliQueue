@@ -25,6 +25,11 @@ public:
     {
     }
 
+    /**
+     * Add a value to the queue.
+     *
+     * @param value The value to add.
+     */
     void enqueue(const T& value)
     {
         if (!_head)
@@ -40,16 +45,12 @@ public:
         }
     }
 
-    T& front()
-    {
-        return _head->value;
-    }
-
-    bool empty()
-    {
-        return !_head;
-    }
-
+    /**
+     * Remove a value from the queue.
+     * Calling this on an empty queue is undefined behavior.
+     *
+     * @return The value that was removed.
+     */
     T dequeue()
     {
         T value       = _head->value;
@@ -67,6 +68,16 @@ public:
         }
 
         return value;
+    }
+
+    T& front()
+    {
+        return _head->value;
+    }
+
+    bool empty()
+    {
+        return !_head;
     }
 
     ~Queue()
