@@ -7,19 +7,19 @@ namespace israeli_queue
 template <class T> class IsraeliQueue
 {
 private:
-    Queue<int> _groupQueue;
-    std::unordered_map<int, Queue<T>> _groupedValues;
-    int _idCounter = 1;
+    Queue<unsigned int> _groupQueue;
+    std::unordered_map<unsigned int, Queue<T>> _groupedValues;
+    unsigned int _idCounter = 1;
 
     /**
      * Returns an unused group id.
      */
-    int _findNewID()
+    unsigned int _findNewID()
     {
-        int id = _idCounter++;
+        unsigned int id = _idCounter++;
 
         // Check if there was an overflow in `_idCounter`.
-        if (id < 0)
+        if (id == 0)
         {
             _idCounter = 1;
             while (_groupedValues.find(_idCounter) != _groupedValues.end())
@@ -37,11 +37,11 @@ public:
      * Add a value to the queue.
      *
      * @param value The value to add.
-     * @param group The group of the value or -1 to create a new group.
+     * @param group The group of the value or 0 to create a new group.
      */
-    void enqueue(T value, int group = -1)
+    void enqueue(T value, unsigned int group = 0)
     {
-        if (group == -1)
+        if (!group)
         {
             group = _findNewID();
             _groupQueue.enqueue(group);
