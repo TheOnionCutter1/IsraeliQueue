@@ -1,2 +1,2 @@
-add_executable (queueDemo demo.c)
+add_executable (queueDemo demo.cpp)
 target_link_libraries (queueDemo LINK_PUBLIC IsraeliQueue)
