@@ -42,10 +42,11 @@ public:
 
     T dequeue()
     {
-        T value = _head->value;
+        T value       = _head->value;
+        Node<T>* next = _head->next;
 
         delete _head;
-        _head = _head->next;
+        _head = next;
         if (!_head)
         {
             _tail = nullptr;
