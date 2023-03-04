@@ -1,4 +1,4 @@
-#include <israeli_queue.hpp>
+#include <IsraeliQueue.hpp>
 #include <stdio.h>
 
 using israeli_queue::IsraeliQueue;
