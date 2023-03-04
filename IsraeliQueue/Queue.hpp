@@ -40,6 +40,22 @@ public:
         }
     }
 
-    T dequeue();
+    T dequeue()
+    {
+        T value = _head->value;
+
+        delete _head;
+        _head = _head->next;
+        if (!_head)
+        {
+            _tail = nullptr;
+        }
+        else
+        {
+            _head->prev = nullptr;
+        }
+
+        return value;
+    }
 };
 }; // namespace israeli_queue
