@@ -30,7 +30,7 @@ public:
         if (!_head)
         {
             _head = new Node<T>(value);
-            _tail = new Node<T>(value);
+            _tail = _head;
         }
         else
         {
