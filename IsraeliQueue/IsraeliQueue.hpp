@@ -1,6 +1,7 @@
 #pragma once
 #include "Queue.hpp"
 #include <unordered_map>
+#include <utility>
 
 namespace israeli_queue
 {
@@ -39,16 +40,26 @@ public:
      *
      * @param value The value to add.
      * @param group The group of the value or 0 to create a new group.
+     * If the group does not exist, a new group with
+     * the specified id will be created.
+     *
+     * @return The ID of the group (useful when passing 0 in `group`).
      */
-    void enqueue(T value, unsigned int group = 0)
+    unsigned int enqueue(T value, unsigned int group = 0)
     {
-        if (!group)
+        if (group == 0)
         {
             group = _findNewID();
+        }
+        // Check if it is a new group.
+        if (_groupedValues.find(group) == _groupedValues.end())
+        {
             _groupQueue.enqueue(group);
-            _groupedValues[group] = Queue<T>();
+            _groupedValues.insert(std::make_pair(group, Queue<T>()));
         }
         _groupedValues[group].enqueue(value);
+
+        return group;
     }
 
     /**
